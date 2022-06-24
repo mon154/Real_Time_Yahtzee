@@ -13,7 +13,7 @@ I wanted to try dipping into video object detection and algorithm design, so thi
 * Logitech C615 HD Webcam (However any webcam should be sufficient)
 
 ## Useful Websites
-Useful websites still incoming
+Useful websites incoming
 
 ## Future Work
 I would eventually like to implement a GUI so the game is no longer played in the terminal.
