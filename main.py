@@ -6,29 +6,80 @@ from computer_class import computer_player
 
 # Displays selected users scorecard
 def display_scorecard(current_player):
-  pass
+  aces = current_player.upper_section["Aces"]
+  twos = current_player.upper_section["Twos"]
+  threes = current_player.upper_section["Threes"]
+  fours = current_player.upper_section["Fours"]
+  fives = current_player.upper_section["Fives"]
+  sixes = current_player.upper_section["Sixes"]
+  three_of_a_kind = current_player.lower_section["3 of a kind"]
+  four_of_a_kind = current_player.lower_section["4 of a kind"]
+  full_house = current_player.lower_section["Full House"]
+  sm_straight = current_player.lower_section["SM Straight"]
+  lg_straight = current_player.lower_section["LG Straight"]
+  yahtzee = current_player.lower_section["Yahtzee"]
+  chance = current_player.lower_section["Chance"]
+  #print(current_player.upper_section["Aces"])
+  print("-----------------------------------------")
+  print(f"| Player {current_player.player_num}    ")
+  print("-----------------------------------------")
+  print("| Upper Section                          ")
+  print("-----------------------------------------")
+  print(f"| Aces: {aces}                          ")
+  print(f"| Twos: {twos}                          ")
+  print(f"| Threes: {threes}                      ")
+  print(f"| Fours: {fours}                        ")
+  print(f"| Fives: {fives}                        ")
+  print(f"| Sixes: {sixes}                        ")
+  print("-----------------------------------------")
+  print("| Lower Section                          ")
+  print("-----------------------------------------")
+  print(f"| 3 of a kind: {three_of_a_kind}        ")
+  print(f"| 4 of a kind: {four_of_a_kind}         ")
+  print(f"| Full House: {full_house}              ")
+  print(f"| SM Straight: {sm_straight}            ")
+  print(f"| LG Straight: {lg_straight}            ")
+  print(f"| Yahtzee: {yahtzee}                    ")
+  print(f"| Chance: {chance}                      ")
+  print("-----------------------------------------")
 # Calculates final score of given player
 def calculate_score(current_player):
-  pass
+  upper_score = sum(current_player.upper_section.values())
+  if upper_score >= 63:
+    upper_score_bonus = 35
+  else:
+    upper_score_bonus = 0
+  lower_score = sum(current_player.lower_section.values())
+  total_score = upper_score  + upper_score_bonus + lower_score
+  return total_score
+  print(f"Player {current_player.player_num}: {total_score}")
 
 # Calculates final score, and determines/displays the winner
 def final_scores(players, computer):
+    final_scores = {}
     for i in players:
-        calculate_score(i)
-    calculate_score(computer)
+        player_score = calculate_score(i)
+        final_scores[i] = player_score
+        print(f"Player {i.player_num}: {player_score}")
+    #computer_score = calculate_score(computer)
+    #final_scores[Computer] = player_score
+    print(f"Player {max(final_scores.values())} is the winner!") ### Add if statement if computer wins
+
+    #calculate_score(computer)
 
 # Runs the game    
 def run_game():
-  computer = computer_player()
+  #computer = computer_player()
   players = []
   player_count = int(input("How many players are playing? "))
   for i in range (1,player_count+1): 
     players.append(player(i))
-  for i in range(1):
+  for i in range(13):
     for i in players: 
       i.take_turn()
-    computer.take_turn()
-  final_scores(players, computer)
+      display_scorecard(i)
+    #computer.take_turn()
+  #final_scores(players, computer)
 
 # Prints main menu that allows user to start, exit, or leave the game
 def main_menu():

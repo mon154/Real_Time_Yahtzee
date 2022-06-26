@@ -64,6 +64,7 @@ def read_dice():
 
 def validate_dice():
     dice_counts = read_dice()
+    dice_counts.sort()
     if len(dice_counts) != 5:
         print("These are the dice we found: ", end = ' ')
         print(", ".join(map(str, dice_counts)))
