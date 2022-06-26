@@ -16,4 +16,7 @@ I wanted to try dipping into video object detection and algorithm design, so thi
 Useful websites incoming
 
 ## Future Work
-I would eventually like to implement a GUI so the game is no longer played in the terminal.
+* I need to design and implement the algorithm that allows the computer to play with the players
+* I need to implement the bonus yahtzee feature
+* I would eventually like to implement a GUI so the game is no longer played in the terminal.
+
