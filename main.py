@@ -19,7 +19,7 @@ def display_scorecard(current_player):
   lg_straight = current_player.lower_section["LG Straight"]
   yahtzee = current_player.lower_section["Yahtzee"]
   chance = current_player.lower_section["Chance"]
-  #print(current_player.upper_section["Aces"])
+  bonus = current_player.yahtzee_bonus
   print("-----------------------------------------")
   print(f"| Player {current_player.player_num}    ")
   print("-----------------------------------------")
@@ -41,6 +41,7 @@ def display_scorecard(current_player):
   print(f"| LG Straight: {lg_straight}            ")
   print(f"| Yahtzee: {yahtzee}                    ")
   print(f"| Chance: {chance}                      ")
+  print(f"| Yahtzee Bonus: {bonus}")
   print("-----------------------------------------")
 # Calculates final score of given player
 def calculate_score(current_player):
@@ -49,37 +50,51 @@ def calculate_score(current_player):
     upper_score_bonus = 35
   else:
     upper_score_bonus = 0
-  lower_score = sum(current_player.lower_section.values())
+  lower_score = sum(current_player.lower_section.values()) + (current_player.yahtzee_bonus)
   total_score = upper_score  + upper_score_bonus + lower_score
   return total_score
-  print(f"Player {current_player.player_num}: {total_score}")
 
 # Calculates final score, and determines/displays the winner
-def final_scores(players, computer):
+def final_scores(players):
     final_scores = {}
     for i in players:
         player_score = calculate_score(i)
         final_scores[i] = player_score
         print(f"Player {i.player_num}: {player_score}")
     #computer_score = calculate_score(computer)
-    #final_scores[Computer] = player_score
+    #final_scores[Computer] = computer_score
     print(f"Player {max(final_scores.values())} is the winner!") ### Add if statement if computer wins
-
-    #calculate_score(computer)
 
 # Runs the game    
 def run_game():
   #computer = computer_player()
   players = []
-  player_count = int(input("How many players are playing? "))
+  valid_input = False
+  while not valid_input:
+    try:
+       player_count = int(input("How many players are playing? "))
+       valid_input = True
+    except ValueError:
+      print("Not a valid integer, please try again.")
   for i in range (1,player_count+1): 
     players.append(player(i))
-  for i in range(13):
-    for i in players: 
-      i.take_turn()
-      display_scorecard(i)
+  for i in range(1,14):
+    for x in players: 
+      print("")
+      print(f"Player {x.player_num}, Turn {i}:")
+      x.take_turn()
+      valid_display_input = False
+      while not valid_display_input:
+        display_card = input("Would you like to see your scorecard? ")
+        if display_card in ["Yes", "yes", "y", "Y"]:
+          valid_display_input = True
+          display_scorecard(x)
+        elif display_card in ["No", "no", "n", "N"]:
+          valid_display_input = True
+        else: 
+          print("Please enter Yes or No")
     #computer.take_turn()
-  #final_scores(players, computer)
+  final_scores(players)
 
 # Prints main menu that allows user to start, exit, or leave the game
 def main_menu():

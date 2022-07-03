@@ -104,34 +104,42 @@ def score_four_kind(cur_player, dice_rolls):
             fives += 1
         else:
             sixes +=1
-    if aces >= 3 or twos >= 3 or threes >= 3 or fours >= 3 or fives >= 3 or sixes >= 3: 
+    if aces >= 4 or twos >= 4 or threes >= 4 or fours >= 4 or fives >= 4 or sixes >= 4: 
         score = sum(dice_rolls)
-        cur_player.lower_section["3 of a kind"] = score  
+        cur_player.lower_section["4 of a kind"] = score  
     else:
-        cur_player.lower_section["3 of a kind"] = 0
+        cur_player.lower_section["4 of a kind"] = 0
 
-def score_full_house(cur_player, dice_rolls):
+def score_full_house(cur_player, dice_rolls, bonus_yahtzee):
     dice_rolls.sort()
     if (len(set(dice_rolls))) != 2:
         cur_player.lower_section["Full House"] = 0
     elif dice_rolls[0] != dice_rolls[3] or dice_rolls[1] != dice_rolls[4]:
         cur_player.lower_section["Full House"] = 25
+    elif bonus_yahtzee == True:
+        cur_player.lower_section["Full House"] = 25
     else:
         cur_player.lower_section["Full House"] = 0
-def score_smstraight(cur_player, dice_rolls):
+def score_smstraight(cur_player, dice_rolls, bonus_yahtzee):
     dice_rolls.sort()
     if (len(set(dice_rolls))) >= 4:
         if dice_rolls[0] == 1 and dice_rolls[3] == 4 and dice_rolls[1] != dice_rolls[2]:
             cur_player.lower_section["SM Straight"] = 30   
         elif dice_rolls[0] == 2 and dice_rolls[3] == 5 and dice_rolls[1] != dice_rolls[2]:
             cur_player.lower_section["SM Straight"] = 30
+        elif dice_rolls[0] == 2 and dice_rolls[4] == 5 and dice_rolls [2] == dice_rolls[3]  :
+            cur_player.lower_section["SM Straight"] = 30
+        elif dice_rolls[0] == 2 and dice_rolls[4] == 5 and dice_rolls [1] == dice_rolls[2]  :
+            cur_player.lower_section["SM Straight"] = 30
         elif dice_rolls[0] == 3 and dice_rolls[3] == 6:
+            cur_player.lower_section["SM Straight"] = 30
+        elif bonus_yahtzee == True:
             cur_player.lower_section["SM Straight"] = 30
         else: 
             cur_player.lower_section["SM Straight"] = 0
     else:
         cur_player.lower_section["SM Straight"] = 0  
-def score_lgstraight(cur_player, dice_rolls):
+def score_lgstraight(cur_player, dice_rolls, bonus_yahtzee):
     dice_rolls.sort()
     if (len(set(dice_rolls))) == 5:
         if dice_rolls[0] == 1 and dice_rolls[3] == 5:
@@ -139,6 +147,8 @@ def score_lgstraight(cur_player, dice_rolls):
         elif dice_rolls[0] == 2 and dice_rolls[4] == 6:
             cur_player.lower_section["LG Straight"] = 40
         elif dice_rolls[0] == 1 and dice_rolls[4] == 5:
+            cur_player.lower_section["LG Straight"] = 40
+        elif bonus_yahtzee == True:
             cur_player.lower_section["LG Straight"] = 40
         else:
            cur_player.lower_section["LG Straight"] = 0 

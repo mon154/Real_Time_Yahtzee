@@ -72,11 +72,29 @@ def validate_dice():
         if len(dice_counts) < 5:
           print("It appears we are missing one or more dice.")
           for i in range (5 - len(dice_counts)):
-            missing = int(input("Please enter one of the missing dice values: ")) 
+            valid_missing_integer = False
+            while not valid_missing_integer:
+              try:
+                missing = int(input("Please enter one of the missing dice values: ")) 
+                if missing >=1 and missing <= 6:
+                  valid_missing_integer = True
+                else:
+                  print("Please enter a number between 1 and 6.")  
+              except ValueError:
+                print("Please enter a number between 1 and 6.")
             dice_counts.append(missing) 
         else:
           print("It appears we are getting extra dice.")
           for i in range (len(dice_counts) - 5):
-            extra = int(input("Please enter one of the extra dice values: ")) 
+            valid_extra_integer = False
+            while not valid_extra_integer:
+              try:
+                extra = int(input("Please enter one of the extra dice values: ")) 
+                if extra in dice_counts:
+                  valid_extra_integer = True
+                else:
+                  print("Please enter one of the values reported.")
+              except ValueError:
+                print("Please enter a number between 1 and 6.") 
             dice_counts.remove(extra)
     return dice_counts
