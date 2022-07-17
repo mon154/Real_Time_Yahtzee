@@ -5,7 +5,7 @@ def score_aces(cur_player, dice_rolls):
             ace_total += 1
         else:
             pass
-    cur_player.upper_section["Aces"] = ace_total
+    cur_player.upper_section["Ones"] = ace_total
 
 def score_twos(cur_player, dice_rolls):
     two_total = 0
@@ -110,11 +110,11 @@ def score_four_kind(cur_player, dice_rolls):
     else:
         cur_player.lower_section["4 of a kind"] = 0
 
-def score_full_house(cur_player, dice_rolls, bonus_yahtzee):
+def score_full_house(cur_player, dice_rolls, unique_counts, bonus_yahtzee):
     dice_rolls.sort()
     if (len(set(dice_rolls))) != 2:
         cur_player.lower_section["Full House"] = 0
-    elif dice_rolls[0] != dice_rolls[3] or dice_rolls[1] != dice_rolls[4]:
+    if dice_rolls[0] != dice_rolls[3] and max(unique_counts.values()) != 4:
         cur_player.lower_section["Full House"] = 25
     elif bonus_yahtzee == True:
         cur_player.lower_section["Full House"] = 25

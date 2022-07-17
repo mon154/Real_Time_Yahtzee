@@ -6,7 +6,7 @@ from computer_class import computer_player
 
 # Displays selected users scorecard
 def display_scorecard(current_player):
-  aces = current_player.upper_section["Aces"]
+  aces = current_player.upper_section["Ones"]
   twos = current_player.upper_section["Twos"]
   threes = current_player.upper_section["Threes"]
   fours = current_player.upper_section["Fours"]
@@ -67,7 +67,7 @@ def final_scores(players):
 
 # Runs the game    
 def run_game():
-  #computer = computer_player()
+  comp = computer_player()
   players = []
   valid_input = False
   while not valid_input:
@@ -93,7 +93,9 @@ def run_game():
           valid_display_input = True
         else: 
           print("Please enter Yes or No")
-    #computer.take_turn()
+    print(f"JARVIS, Turn {i}:")
+    comp.take_turn()
+    display_scorecard(comp)
   final_scores(players)
 
 # Prints main menu that allows user to start, exit, or leave the game

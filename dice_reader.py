@@ -96,5 +96,5 @@ def validate_dice():
                   print("Please enter one of the values reported.")
               except ValueError:
                 print("Please enter a number between 1 and 6.") 
-            dice_counts.remove(extra)
+            dice_counts.remove(extra)    
     return dice_counts
