@@ -57,12 +57,14 @@ def calculate_score(current_player):
 # Calculates final score, and determines/displays the winner
 def final_scores(players, computer_player):
     final_scores = {}
+    print("")
     for i in players:
         player_score = calculate_score(i)
         final_scores[i] = player_score
         print(f"Player {i.player_num}: {player_score}")
     computer_score = calculate_score(computer_player)
-    final_scores[computer_player] = computer_score
+    final_scores['Jarvis'] = computer_score
+    print(f"{computer_player.player_num}: {computer_score}")
     print(f"Player {max(final_scores)} is the winner!") 
 
 # Runs the game    
