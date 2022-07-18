@@ -55,15 +55,15 @@ def calculate_score(current_player):
   return total_score
 
 # Calculates final score, and determines/displays the winner
-def final_scores(players):
+def final_scores(players, computer_player):
     final_scores = {}
     for i in players:
         player_score = calculate_score(i)
         final_scores[i] = player_score
         print(f"Player {i.player_num}: {player_score}")
-    #computer_score = calculate_score(computer)
-    #final_scores[Computer] = computer_score
-    print(f"Player {max(final_scores.values())} is the winner!") ### Add if statement if computer wins
+    computer_score = calculate_score(computer_player)
+    final_scores[computer_player] = computer_score
+    print(f"Player {max(final_scores)} is the winner!") 
 
 # Runs the game    
 def run_game():
@@ -96,7 +96,7 @@ def run_game():
     print(f"JARVIS, Turn {i}:")
     comp.take_turn()
     display_scorecard(comp)
-  final_scores(players)
+  final_scores(players, comp)
 
 # Prints main menu that allows user to start, exit, or leave the game
 def main_menu():
