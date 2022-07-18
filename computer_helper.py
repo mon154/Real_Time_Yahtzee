@@ -189,10 +189,10 @@ def found_a_box(comp_player, dice_counts, turn_rerolls, found_box, top_available
                                 rerolls.append(i)
                     return rerolls
                 else:
-                    score_full_house(comp_player, dice_counts, False)
+                    score_full_house(comp_player, dice_counts, unique_counts, False)
                     return None
             else:
-                score_full_house(comp_player, dice_counts, False)
+                score_full_house(comp_player, dice_counts, unique_counts, False)
                 return None 
         
     elif found_box == "4 of a kind":
@@ -385,7 +385,7 @@ def did_not_find_a_box(comp_player, dice_counts, turn_rerolls, all_available, un
                 elif 'LG Straight' in all_available:
                     score_lgstraight(comp_player, dice_counts, False)
                 elif 'Full House' in all_available:
-                    score_full_house(comp_player, dice_counts, False)
+                    score_full_house(comp_player, dice_counts, unique_counts, False)
                 elif 'SM Straight' in all_available:
                     score_smstraight(comp_player, dice_counts, False)
                 elif '3 of a kind' in all_available:
