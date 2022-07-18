@@ -93,6 +93,7 @@ def run_game():
           valid_display_input = True
         else: 
           print("Please enter Yes or No")
+    print("")
     print(f"JARVIS, Turn {i}:")
     comp.take_turn()
     display_scorecard(comp)
