@@ -64,8 +64,6 @@ def final_scores(players, computer_player):
         print(f"Player {i.player_num}: {player_score}")
     computer_score = calculate_score(computer_player)
     final_scores['Jarvis'] = computer_score
-    print(f"{computer_player.player_num}: {computer_score}")
-    print(f"Player {max(final_scores)} is the winner!") 
 
 # Runs the game    
 def run_game():
