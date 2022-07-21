@@ -11,11 +11,12 @@ I wanted to try dipping into video object detection and algorithm design, so thi
 * Logitech C615 HD Webcam (However any webcam should be sufficient)
 
 ## Useful Websites
-Useful websites incoming
+* [This site](https://www.davidepesce.com/2019/09/06/dice-reader-part-1/ "Reading dice with OpenCV – Part 1") was essential for writing the OpenCV dice reader. However it is in C++
+* [OpenCV Python Docs](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
 
 ## Future Work
-* Need to finish the computer player algorithm (Specifically where it tells the user what to reroll and selects the box to score if both rerolls are used). 
-* Eventually I would like to refine the algorithm so it plays better.
+* Need to fix bug for computer player. Currently once he begins to run out of top boxes to fill, instead of rolling for yahtzee with the most frequent number of dice rolled, he instead always asked to reroll everything except twos which is entertaining but not what I had intended. 
+* Need to find a better way for the game to recognize Straights (sometimes it will miss one if there's a repeat number in the list of dice rolls)
 * Give players the option to view their available score boxes at the beginning of their turn.
 * I would eventually like to implement a GUI so the game is no longer played in the terminal.
 
